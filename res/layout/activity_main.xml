@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal" >
+
+        <com.fanxl.my2048.RoundImageView
+            android:id="@+id/game_iv_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="6dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/game_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fxl" />
+
+            <TextView
+                android:id="@+id/game_tv_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全球排名:1025名" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/main_tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前得分:0" />
+
+        <TextView
+            android:id="@+id/main_tv_best"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/gameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <com.fanxl.my2048.GameView
+            android:id="@+id/main_game_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </com.fanxl.my2048.GameView>
+
+        <com.fanxl.my2048.AnimLayer
+            android:id="@+id/animLayer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </com.fanxl.my2048.AnimLayer>
+    </FrameLayout>
+
+</LinearLayout>
