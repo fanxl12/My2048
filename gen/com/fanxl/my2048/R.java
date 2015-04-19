@@ -156,20 +156,21 @@ containing a value of this type.
         public static final int logo=0x7f020000;
     }
     public static final class id {
-        public static final int animLayer=0x7f080007;
-        public static final int bt_login=0x7f08000c;
-        public static final int card_item_head=0x7f080008;
-        public static final int card_item_name=0x7f080009;
-        public static final int card_item_ranking=0x7f08000a;
-        public static final int card_item_score=0x7f08000b;
-        public static final int gameContainer=0x7f080005;
-        public static final int game_iv_head=0x7f080000;
-        public static final int game_tv_name=0x7f080001;
-        public static final int game_tv_ranking=0x7f080002;
-        public static final int main_game_view=0x7f080006;
-        public static final int main_tv_best=0x7f080004;
-        public static final int main_tv_score=0x7f080003;
-        public static final int ranking_rv=0x7f08000d;
+        public static final int animLayer=0x7f080008;
+        public static final int bt_login=0x7f08000d;
+        public static final int card_item_head=0x7f080009;
+        public static final int card_item_name=0x7f08000a;
+        public static final int card_item_ranking=0x7f08000b;
+        public static final int card_item_score=0x7f08000c;
+        public static final int gameContainer=0x7f080006;
+        public static final int game_iv_head=0x7f080001;
+        public static final int game_title=0x7f080000;
+        public static final int game_tv_name=0x7f080002;
+        public static final int game_tv_ranking=0x7f080003;
+        public static final int main_game_view=0x7f080007;
+        public static final int main_tv_best=0x7f080005;
+        public static final int main_tv_score=0x7f080004;
+        public static final int ranking_rv=0x7f08000e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -212,6 +213,9 @@ containing a value of this type.
         public static final int CardView=0x7f060000;
         public static final int CardView_Dark=0x7f060002;
         public static final int CardView_Light=0x7f060001;
+        /**  全屏样式 
+         */
+        public static final int fullTheme=0x7f060005;
     }
     public static final class styleable {
         /** Attributes that can be used with a CardView.

@@ -1,17 +1,16 @@
 package com.fanxl.my2048;
 
-import java.io.File;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.bmob.v3.listener.UpdateListener;
@@ -19,6 +18,7 @@ import cn.jpush.android.api.JPushInterface;
 
 import com.fanxl.my2048.entity.Person;
 import com.fanxl.my2048.util.ImageDown;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 
 public class MainActivity extends Activity {
@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
     private TextView game_tv_name, game_tv_ranking;
     private SharedPreferences sp;
     private String objectId;
+    private ImageLoader imageLoader;
     
     Handler handler = new Handler(){
     	
@@ -79,8 +80,6 @@ public class MainActivity extends Activity {
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +91,9 @@ public class MainActivity extends Activity {
 
     @SuppressLint("NewApi") 
     private void initVarible() {
+    	
+    	imageLoader = ImageLoader.getInstance();
+    	
     	Bundle bundle = getIntent().getBundleExtra(Main.USER_DATA);
     	game_tv_name.setText(bundle.getString(Main.NICK_NAME, ""));
     	bestScore = Math.max(sp.getInt(BEST_SCORE, 0), bundle.getInt(Main.SCORE));
@@ -102,21 +104,12 @@ public class MainActivity extends Activity {
     	}else{
     		game_tv_ranking.setText("全球排名:暂无排名");
     	}
-    	
-    	File file = new File(ImageDown.PATH+"/image.png");
-    	String nickName = sp.getString(Main.NICK_NAME, "");
-    	if(file.exists() && nickName.equals(bundle.getString(Main.NICK_NAME, ""))){
-    		Bitmap bitmap = BitmapFactory.decodeFile(ImageDown.PATH+"/image.png");
-    		game_iv_head.setImageBitmap(bitmap);
-    	}else{
-    		String url = bundle.getString(Main.HEAD_IMAGE);
-    		if(TextUtils.isEmpty(url))return;
-    		new DownImage(url).start();
-    	}
+    	String url = bundle.getString(Main.HEAD_IMAGE);
+    	imageLoader.displayImage(url, game_iv_head);
     	
     	sp.edit().putString(Main.NICK_NAME, bundle.getString(Main.NICK_NAME, "")).commit();
     	
-    	JPushInterface.setDebugMode(true);
+    	JPushInterface.setDebugMode(false);
         JPushInterface.init(this);
     }
     
@@ -179,6 +172,14 @@ public class MainActivity extends Activity {
         game_tv_name = (TextView)findViewById(R.id.game_tv_name);
         game_tv_ranking = (TextView)findViewById(R.id.game_tv_ranking);
         main_tv_best = (TextView)findViewById(R.id.main_tv_best);
+        
+        findViewById(R.id.game_title).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(MainActivity.this, Ranking.class));
+			}
+		});
     }
     
     @Override

@@ -44,10 +44,11 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
+        android:name="com.fanxl.my2048.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/fullTheme" >
         <activity
             android:name=".Main"
             android:label="@string/app_name"
@@ -78,7 +79,12 @@
 
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity android:name=".Ranking"
+            android:screenOrientation="portrait">
         </activity>
         
         <!-- Required SDK核心功能-->

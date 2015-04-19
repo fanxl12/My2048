@@ -6,7 +6,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,6 +44,7 @@ public class Main extends Activity {
 	public static final String SCORE = "SCORE";
 	public static final String PERSON_ID = "PERSON_ID";
 	public static final String PERSON_SORT = "PERSON_SORT";
+	public static final String PUSH_MSG = "PUSH_MSG";
 
 	// QQ分享和授权登录
 	private Tencent mTencent;
@@ -79,11 +83,26 @@ public class Main extends Activity {
 		initVarible();
 		initView();
 		sp = getSharedPreferences(GAME2048, Context.MODE_PRIVATE);
-		String nickName = sp.getString(NICK_NAME, "");
-		if (!TextUtils.isEmpty(nickName)) {
-			getPersons(nickName);
+		String pushMsg = getIntent().getStringExtra(PUSH_MSG);
+		if(!TextUtils.isEmpty(pushMsg)){
+			new AlertDialog.Builder(this).setTitle("消息通知")
+			.setMessage(pushMsg)
+			.setPositiveButton("确定", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					String nickName = sp.getString(NICK_NAME, "");
+					if (!TextUtils.isEmpty(nickName)) {
+						getPersons(nickName);
+					}
+				}
+			});
+		}else{
+			String nickName = sp.getString(NICK_NAME, "");
+			if (!TextUtils.isEmpty(nickName)) {
+				getPersons(nickName);
+			}
 		}
-
 	}
 
 	/**
@@ -176,6 +195,17 @@ public class Main extends Activity {
 		} catch (Exception e) {
 		}
 	}
+	
+	@Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
 
 	private class BaseUiListener implements IUiListener {
 

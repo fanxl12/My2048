@@ -25,9 +25,10 @@ public class MyReceiver extends BroadcastReceiver {
             System.out.println("收到了通知");
             // 在这里可以做些统计，或者做些其他工作
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-            System.out.println("用户点击打开了通知");
+            System.out.println("用户点击打开了通知"+bundle.getString(JPushInterface.EXTRA_MESSAGE));
             // 在这里可以自己写代码去定义用户点击后的行为
-            Intent i = new Intent(context, MainActivity.class);  //自定义打开的界面
+            Intent i = new Intent(context, Main.class);  //自定义打开的界面
+            i.putExtra(Main.PUSH_MSG, bundle.getString(JPushInterface.EXTRA_MESSAGE));
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
             // Activity 被打开，上报服务器统计。

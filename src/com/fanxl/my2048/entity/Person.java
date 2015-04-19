@@ -13,6 +13,7 @@ public class Person extends BmobObject{
 	private String gender;
 	private String headImage;
     private int score;
+    private int rankIng;
 	
 	public String getNickname() {
 		return nickname;
@@ -40,4 +41,10 @@ public class Person extends BmobObject{
     public void setScore(int score) {
         this.score = score;
     }
+	public int getRankIng() {
+		return rankIng;
+	}
+	public void setRankIng(int rankIng) {
+		this.rankIng = rankIng;
+	}
 }

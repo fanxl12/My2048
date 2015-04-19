@@ -6,10 +6,11 @@
     tools:context=".MainActivity" >
 
     <LinearLayout
+        android:id="@+id/game_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="10dp" >
 
         <com.fanxl.my2048.RoundImageView
             android:id="@+id/game_iv_head"
@@ -38,42 +39,46 @@
         </LinearLayout>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal" >
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="#56000000" />
 
-        <TextView
-            android:id="@+id/main_tv_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="当前得分:0" />
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:padding="10dp" >
 
-        <TextView
-            android:id="@+id/main_tv_best"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+           <TextView
+               android:id="@+id/main_tv_score"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="当前得分:0" />
 
-    <FrameLayout
-        android:id="@+id/gameContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
+           <TextView
+               android:id="@+id/main_tv_best"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true" />
+       </RelativeLayout>
 
-        <com.fanxl.my2048.GameView
-            android:id="@+id/main_game_view"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </com.fanxl.my2048.GameView>
+       <FrameLayout
+           android:id="@+id/gameContainer"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="1" >
 
-        <com.fanxl.my2048.AnimLayer
-            android:id="@+id/animLayer"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </com.fanxl.my2048.AnimLayer>
-    </FrameLayout>
+           <com.fanxl.my2048.GameView
+               android:id="@+id/main_game_view"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent" >
+           </com.fanxl.my2048.GameView>
 
+           <com.fanxl.my2048.AnimLayer
+               android:id="@+id/animLayer"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent" >
+           </com.fanxl.my2048.AnimLayer>
+       </FrameLayout>
 </LinearLayout>
